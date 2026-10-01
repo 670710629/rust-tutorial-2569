@@ -11,7 +11,7 @@
 
 | # | Name | Student ID | GitHub Username | Main Responsibility |
 |---|---|---|---|---|
-| 1 | นายนพรัตน์ นรนิล | 670710627 | `@[กรอก GitHub username]` | Concept + Short Code Illustration (สรุปแนวคิดหลัก + โค้ดตัวอย่างสั้น) |
+| 1 | นายนพรัตน์ นรนิล | 670710627 | `@[670710627]` | Concept + Short Code Illustration (สรุปแนวคิดหลัก + โค้ดตัวอย่างสั้น) |
 | 2 | นายปธานิน พรรณหาญ | 670710628 | `@[กรอก GitHub username]` | Detailed Code + Live Demo (โค้ดเชิงลึก + สาธิตสด) |
 | 3 | นางสาวปริยากร คาวิน | 670710629 | `@670710629` | Rust vs Other Language + PPL Analysis (เปรียบเทียบภาษา + วิเคราะห์เชิง PPL) |
 | 4 | นางสาวพิชญธิดา รักดี | 670710630 | `@670710630` | Exercises + Common Mistakes + Challenge (แบบฝึกหัด + ข้อผิดพลาดที่พบบ่อย + คำถามท้าทาย) |
@@ -35,86 +35,257 @@
 
 อธิบายว่า Topic นี้คืออะไร มีความสำคัญอย่างไร และใช้แก้ปัญหาอะไรในการเขียนโปรแกรม
 
-`[เขียนเนื้อหาที่นี่]`
+`Polymorphism เป็นแนวคิดที่ช่วยให้เราสามารถเขียนโค้ดชุดเดียวให้ทำงานกับหลาย Type ได้ โดยไม่ต้องเขียนโค้ดซ้ำสำหรับแต่ละ Type ทำให้โปรแกรมสามารถรองรับความหลากหลายและขยายระบบได้ง่ายขึ้น ในภาษา Rust ซึ่งไม่มี Class และ Inheritance แบบภาษาเชิงวัตถุทั่วไป Rust ใช้ Trait ในการสร้าง Polymorphism โดย Trait ช่วยกำหนดพฤติกรรมที่ Type ต่าง ๆ สามารถนำไปใช้ร่วมกันได้ ทำให้เราสามารถออกแบบโค้ดที่ยืดหยุ่นและนำกลับมาใช้ซ้ำได้ โดยไม่จำเป็นต้องพึ่งพา Inheritance`
 
 ---
 
 ## 4. Key Concepts
 
-### 4.1 `[Concept 1]`
+### 4.1 `[Polymorphism]`
 
 **คำอธิบาย**
 
-`[อธิบายแนวคิด]`
+`การใช้ interface เดียวกันกับหลาย Type โดยแต่ละ Type สามารถมีพฤติกรรมแตกต่างกันได้ ทำให้ ผู้เรียกใช้(caller) ไม่ต้องรู้ว่าเป็น Type ไหน และ เพิ่ม Type ใหม่ได้ง่าย โดย Rust ใช้ Trait สำหรับทำ Polymorphism`
 
 **ตัวอย่าง**
 
 ```rust
+trait Animal {
+    fn speak(&self);
+}
+struct Dog;
+struct Cat;
+impl Animal for Dog {
+    fn speak(&self) {
+        println!("Woof!");
+    }
+}
+impl Animal for Cat {
+    fn speak(&self) {
+        println!("Meow!");
+    }
+}
+fn make_sound<T: Animal>(animal: T) {
+    animal.speak();
+}
 fn main() {
-    println!("Hello, Rust!");
+    let dog = Dog;
+    let cat = Cat;
+
+    make_sound(dog);
+    make_sound(cat);
 }
 ```
 
 **Explanation**
 
-`[อธิบายว่า code ทำงานอย่างไร]`
+`ใช้ Trait Animal เป็น interface ร่วม  แต่ละ Type implement พฤติกรรมของตัวเอง  T: Animal รับ Type ที่ implement Animal  Compiler เลือก implementation ตอน Compile time`
 
 ---
 
-### 4.2 `[Concept 2]`
+### 4.2 `[Traits]`
 
-`[อธิบายแนวคิด]`
+`Trait คือ ข้อกำหนดของพฤติกรรม โดยรวมกลุ่มของ method signature ที่เกี่ยวข้องกันไว้ด้วยกัน type ใดที่ implement trait นั้น ถือว่าได้ รับรอง ว่าจะมี method ตามที่ traitกำหนดไว้ครบถ้วน Method ใน trait แบ่งเป็น 2 แบบ: `<br>`1 required method (มีแค่ signature ไม่มี body บังคับให้ type ที่ implement ต้องเขียนเอง)`<br>`2 default method (มี implementation สำเร็จรูปให้แล้วจะใช้ตามเดิมหรือ override ก็ได้)`
 
+**ตัวอย่าง**
 ```rust
-// Rust code
+trait Animal {
+    fn name(&self) -> String;              
+
+    fn greet(&self) -> String {             
+       format!("Hi, I'm {}", self.name())
+    }
+}
+
+struct Dog { name: String }
+
+impl Animal for Dog {
+    fn name(&self) -> String { self.name.clone() }
+}
+
+fn main() {
+    let d = Dog { name: String::from("Rex") };
+    println!("{}", d.greet());
+}
 ```
+**Explanation**
+
+`Trait Animal มี 2 method`<br>
+`name()  ไม่มี body ต้องให้ type ที่ implement เขียนเอง (required)`<br>
+`greet()  มี body สำเร็จรูปให้แล้ว ใช้ได้เลยไม่ต้องเขียนใหม่ (default) และข้างในมันเรียก self.name() ได้เลย ทั้งที่ name() ยังไม่รู้ตอนนิยาม trait ว่าใครจะ implement ยังไง  เพราะมั่นใจได้ว่า type ไหนก็ตามที่implement มาต้องมี name() แน่นอน`
+`Dog implement Animal โดยเขียนแค่ name() (ตัวเดียวที่บังคับ) ส่วน greet() ไม่เขียนเลย ใช้ default จาก trait`
+`พอเรียก d.greet() → มันไปรัน default method → ข้างในเรียก self.name() → ได้ค่าจาก Dog ที่ implement ไว้ ("Rex") → ผลลัพธ์คือ "Hi, I'm Rex"`
 
 ---
 
-### 4.3 `[Concept 3]`
+### 4.3 `[Trait Implementation]`
 
-`[อธิบายแนวคิด]`
+`[คือขั้นตอนที่ type หนึ่ง เขียนโค้ดให้ตรงกับ contract ที่ trait กำหนดไว้ `<br>
+`ใช้ syntax impl TraitName for TypeName { ... }]`
 
+
+**ตัวอย่าง**
 ```rust
-// Rust code
+trait Speak {         
+    fn speak(&self) -> String;
+}
+
+struct Dog;             
+
+impl Speak for Dog {    
+    fn speak(&self) -> String {
+        String::from("Woof!")
+    }
+}
 ```
+**Explanation**
+
+`impl Speak for Dog คือการบอก compiler ว่า "ตอนนี้ Dog เป็น type ที่ implement Speak แล้ว" ข้างในต้องเขียน method ที่เป็น required ให้ครบ (ในที่นี้คือ speak()) ถ้าเขียนไม่ครบ compiler จะ error ทันที เพราะถือว่า contract ยังไม่สมบูรณ์`
 
 ---
 
-### 4.4 `[Concept 4 — ถ้ามี]`
+### 4.4 `[Trait Bounds]`
 
-`[อธิบายแนวคิด]`
+`การที่เรายังไม่กำหนดว่า parameterนั้น เป็น Type อะไร แต่เรากำหนดว่า Typeนัั้น ต้อง implement traitนี้`
 
+
+**ตัวอย่าง**
 ```rust
-// Rust code
+trait Speak {
+    fn speak(&self) -> String;
+}
+
+struct Dog;
+impl Speak for Dog {
+    fn speak(&self) -> String { String::from("Woof!") }
+}
+
+// T: Speak คือ trait bound
+fn make_it_speak<T: Speak>(item: T) {
+    println!("{}", item.speak());
+}
+
+fn main() {
+    make_it_speak(Dog);
+}
 ```
+**Explanation**
+
+`<T: Speak> บอกว่า T จะเป็น type อะไรก็ได้ แต่ต้อง implement Speak เท่านั้น เพราะข้างในฟังก์ชันมีการเรียก item.speak() — ถ้าไม่ใส่ bound ไว้ compiler จะไม่รู้ว่า T มี method speak() ไหม และจะ error ทันที`
 
 ---
 
-### 4.5 `[Concept 5 — ถ้ามี]`
 
-`[อธิบายแนวคิด]`
+### 4.5 `[Supertraits]`
+`[Rust ไม่มี "inheritance" แต่ สามารถสร้าง trait ใหม่ ขึ้นมา แล้วกำหนดว่า Trait นี้ ต้องอาศัยความสามารถจากอีก Trait หนึ่ง]`
 
+**ตัวอย่าง**
 ```rust
-// Rust code
+trait Named {
+    fn name(&self) -> String;
+}
+
+trait Greet: Named {
+    fn greet(&self) -> String {
+        format!("Hi, {}", self.name())
+    }
+}
+
+struct Person { name: String }
+
+impl Named for Person {
+    fn name(&self) -> String { self.name.clone() }
+}
+
+impl Greet for Person {}
+
+fn main() {
+    let p = Person { name: String::from("Alice") };
+    println!("{}", p.greet());
+}
 ```
+**Explanation**
+
+`trait Greet สามารถ "อ้างอิง" method จาก trait Named ได้ โดยการประกาศความสัมพันธ์ไว้ล่วงหน้าด้วย Greet: Named หมายความว่า Type ที่ implement Greet ต้อง implement Named ด้วย ทำให้ Greet สามารถเรียกใช้ method ที่กำหนดไว้ใน Named ได้ ในตัวอย่าง Person implement ทั้ง Named และ Greet จึงสามารถเรียก greet() ได้`
+
+---
+
+### 4.6 `[Static Dispatch]`
+`[compiler รู้ concrete type ตั้งแต่ compile time จึงเลือก method ที่ต้องเรียกได้ล่วงหน้า โดยมักใช้ Generics หรือ impl Trait]`
+
+**ตัวอย่าง**
+```rust
+trait Speak {
+    fn speak(&self) -> String;
+}
+
+struct Dog;
+impl Speak for Dog {
+    fn speak(&self) -> String { String::from("Woof!") }
+}
+
+// T: Speak คือ trait bound
+fn make_it_speak<T: Speak>(item: T) {
+    println!("{}", item.speak());
+}
+
+fn main() {
+    make_it_speak(Dog);
+}
+```
+**Explanation**
+
+`T: Speak ทำให้ compiler รู้ว่า T คือ Dog ตั้งแต่ compile time จึงสามารถเลือก method speak() ได้โดยตรง`
+
+---
+
+### 4.7 `[Dynamic Dispatch]`
+`compiler ไม่ต้องรู้ concrete type ตอน compile time และเลือก implementation ที่เหมาะสมตอน runtime ผ่าน dyn Trait`
+
+**ตัวอย่าง**
+```rust
+trait Speak {
+    fn speak(&self);
+}
+
+struct Dog;
+
+impl Speak for Dog {
+    fn speak(&self) {
+        println!("Woof!");
+    }
+}
+
+fn make_sound(animal: &dyn Speak) {
+    animal.speak();
+}
+
+fn main() {
+    let dog = Dog;
+    make_sound(&dog);
+}
+```
+**Explanation**
+
+`&dyn Speak สามารถรับ type ที่ implement Speak ได้ และการเรียก method จะเลือก implementation ผ่าน vtable ตอน runtime`
 
 ---
 
 ## 5. Important Syntax / Rules
-
-| Syntax / Rule | Meaning | Example |
+|Syntax / Rule| Meaning | Example |
 |---|---|---|
-| `[syntax/rule]` | `[ความหมาย]` | `[ตัวอย่าง]` |
-| `[syntax/rule]` | `[ความหมาย]` | `[ตัวอย่าง]` |
-| `[syntax/rule]` | `[ความหมาย]` | `[ตัวอย่าง]` |
+| `trait TraitName { ... }` | `ประกาศ trait` | `trait Speak { fn speak(&self) -> String;}` |
+| `impl TraitName for TypeName { ... }` | `implement trait ให้กับ type ที่ระบุ` | `impl Speak for Dog { fn speak(&self) -> String { ... } }` |
+| `fn f<T: Trait>(x: T)` | `trait bound บังคับว่า T ต้อง implement Trait นั้น` | `fn make_it_speak<T: Speak>(item: T) { ... }` |
+| `trait A: B { ... }` | `supertrait - type ที่ implement A ต้อง implement B ` | `trait Greet: Named { ... }` |
 
 ### Important Rules
 
-1. `[กฎสำคัญข้อที่ 1]`
-2. `[กฎสำคัญข้อที่ 2]`
-3. `[กฎสำคัญข้อที่ 3]`
-
+1. `Type ที่ implement Trait ต้อง implement required methods ให้ครบ`
+2. `Trait bound ช่วยให้ compiler ตรวจสอบความสามารถของ Type ตอน compile time`
+3. `Supertrait (A: B) กำหนดว่า Type ที่ implement A ต้อง implement B ด้วย`
+4. `Static Dispatch รู้ concrete type ตอน Compile Time และ compiler เลือก implementation ล่วงหน้า`
+5. `Dynamic Dispatch ใช้ dyn Trait และเลือก implementation ตอน Runtime`
 ---
 
 ## 6. Runnable Code Examples
