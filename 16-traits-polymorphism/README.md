@@ -627,11 +627,11 @@ fn main() {
 
 | Aspect | Rust | Other Language |
 |---|---|---|
-| Syntax | `[อธิบาย]` | `[อธิบาย]` |
-| Semantics / Behavior | `[อธิบาย]` | `[อธิบาย]` |
-| Type System | `[อธิบาย]` | `[อธิบาย]` |
-| Memory Management | `[อธิบาย]` | `[อธิบาย]` |
-| Safety | `[อธิบาย]` | `[อธิบาย]` |
+| Syntax | `Rust : จะใช้ Traits และ struct , impl ` | `Java : จะใช้ interface , extends ,implements และ class `<br>` Python : ใช้ class โดยการ overriding method หรือ duck Typing  `<br>` C++ : ใช้ class Function Overloading , Function Overriding , Virtual Functions ` |
+| Semantics / Behavior | ` Rust : โดย trait จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ struct ซึ่งแต่ละ struct สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างได้ ` | ` java : โดย interface จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ class ซึ่งแต่ละ class สามารถ implements หรือ overriding การทำงานให้แตกต่างได้ `<br> `Python : แต่ละ class สามารถมี method ชื่อเดียวกันได้แต่กำหนดการทำงานแตกต่างกันได้  โดยใช้  duck Typing หรือ overriding `<br>` C++ : โดยคลาสหลักสามารถกำหนด method ให้เป็น virtual method และคลาสลูกสามารถ override methods นั้นได้ ` |
+| Type System | ` Rust : Static Typing ` | ` java : Static Typing `<br>` Python : Dynamic Typing `<br>` C++ : Static Typing  `|
+| Memory Management | `Rust : ใช้ Ownership + Borrowing  ` | `java : ใช้ Garbage Collector `<br>` Python : ใช้ Reference Counting  และ Garbage Collection โปรแกรมเมอร์ไม่จำเป็นต้องจัดการเอง  `<br>` C++ : ใช้แบบ Dynamic Memory Allocation ในขณะ runtime โดยใช้ new และ deleteเพื่อคืนหน่วยความจำ(deallocate) ` |
+| Safety | ` Rust : ปลอดภัยสูง เพราะ ใช้ ownership + borrowing  ในการตรวจสอบ `| ` java : มีsafety สูงเพราะมีการตรวจตอบโดย JVM หรือ Garbage Collector `<br>` Python : มีความยืดหยุ่นและใช้งานง่ายจาก dynamic typing  `<br>` C++ : โปรแกรมเมอร์สามารถจัดการ Memory โดยตรงได้ ซึ่งอาจทำให้เกิดปัญหาเกี่ยวกับ memory ได้ ` |
 
 ### Rust Example
 
@@ -675,13 +675,122 @@ fn main() {
 
 ### `[Other Language]` Example
 
-```python
-# Other language code
-```
+python
+``` python
 
+class Person:
+    def __init__(self, name):
+        self.name = name
+
+    def eat_dinner(self):
+        print(self.name +" Yummy")
+
+
+class Cat:
+    def __init__(self, name):
+        self.name = name
+
+    def eat_dinner(self):
+        print(self.name +" Num Num Num")
+
+
+perr = Person("Coco")
+perr.eat_dinner()
+
+catt = Cat("Mr.Joe")
+catt.eat_dinner()
+```
+ java
+ ``` java 
+interface Eat {
+    void eat_dinner();
+}
+
+class Person implements Eat{
+    String name ;
+
+    Person(String name ){
+        this.name = name ; 
+    }
+
+    public  void eat_dinner(){
+        System.out.println(name +"  Yummy");
+    }
+}
+
+class Cat implements Eat{
+    String name ;
+
+    Cat(String name ){
+        this.name = name ; 
+    }
+
+    public  void eat_dinner(){
+        System.out.println(name + " Num Num NUm");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Person perr = new Person("Coco");
+        perr.eat_dinner();
+        Cat catt = new Cat("Mr.Joe");
+        catt.eat_dinner();
+    }
+    
+}
+```
+c++
+ ``` c++
+#include <iostream>
+using namespace std;
+
+class Eat {
+public:
+    void eat_dinner() {
+    }
+};
+
+class Person : public Eat {
+public:
+    string name;
+
+    Person(string name) {
+        this->name = name;
+    }
+
+    void eat_dinner() {
+        cout << name << " Yummy\n";
+    }
+};
+
+class Cat : public Eat {
+public:
+    string name;
+
+    Cat(string name) {
+        this->name = name;
+    }
+
+    void eat_dinner() {
+        cout << name << " Num Num Num\n";
+    }
+};
+
+int main() {
+    Person perr("Coco");
+    perr.eat_dinner();
+
+    Cat catt("Mr.Joe");
+    catt.eat_dinner();
+
+    return 0;
+}
+```
+---
 ### Analysis
 
-`[อธิบายความแตกต่างที่สำคัญ และเหตุผลด้านการออกแบบภาษา]`
+`Rust จะใช้ trait เป็นตัวกำหนดพฤติกรรมที่สามารถนำไปใช้ได้แต่สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างกันได้ โดย trait สามารถมีหลาย method ได้และใช้ impl ในการ implement funtiocn ใน trait`
 
 ---
 
