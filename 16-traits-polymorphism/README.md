@@ -597,27 +597,27 @@ fn main() {
 
 ### 9.1 Syntax
 
-`[Topic นี้เกี่ยวข้องกับ syntax อย่างไร]`
+`ใช้ trait และ struct ,impl`
 
 ### 9.2 Semantics
 
-`[คำสั่ง/construct เหล่านี้มีความหมายหรือพฤติกรรมอย่างไร]`
+`ดย trait จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ stuct ซึ่งแต่ละ struct สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างได้ และใช้ impl ในการ implement trait ออกมา ใช้ generic bound เพื่อบังคับว่าประเภทที่ใช้ต้องพฤติกรรมตามที่ traitsกำหนดไว้จึงจะสามารถใช้งานได้ , Trait Bound ใช้กำหนดว่า Generic Type ต้อง implement Trait ใด Trait หนึ่ง เพื่อให้ function หรือ struct สามารถเรียกใช้งาน method ที่กำหนดใน Trait ได้ เช่น impl Eat for Person โดย Eat คือ trait`
 
 ### 9.3 Type System
 
-`[เกี่ยวข้องกับ type system อย่างไร ถ้ามี]`
+`static type system `
 
 ### 9.4 Memory / Resource Management
 
-`[เกี่ยวข้องกับ memory หรือ resource management อย่างไร ถ้ามี]`
+`ใช้ ownership และ borrowing ในการจัดการ Memory โดยตรวจสอบในระหว่าง complile time  โดยไม่จำเป็นต้องใช้ garbage collector`
 
 ### 9.5 Abstraction / Other PPL Concepts
 
-`[อธิบาย abstraction, scope, binding, paradigm หรือแนวคิด PPL อื่นที่เกี่ยวข้อง]`
+`zero-cost abstraction สามารถใช้ abstraction ระดับสูงโดยไม่เสียประสิทธิภาพการทำงานลงไป และมี spoce บอก compiler ว่า borrow จะใช้งานได้เมื่อใด ทรัพยากรสามารถคืนได้เมือใด ตัวแปรที่สร้างจะถูกทำลายเมื่อใด`
 
 ### 9.6 Why Rust?
 
-`[Rust ใช้แนวคิดนี้เพื่อเพิ่ม safety, reliability หรือ performance อย่างไร]`
+`มี ownership และ borrowing ช่วยจัดการ memory และ safety ลดปัญหา memory leaks และ crashes ได้มากขึ้น , Zero-cost Abstraction `
 
 ---
 
