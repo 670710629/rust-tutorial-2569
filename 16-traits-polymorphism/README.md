@@ -338,51 +338,114 @@ fn main() {
 
 ## 7. Common Mistakes
 
-### Mistake 1 — `[ชื่อข้อผิดพลาด]`
+### Mistake 1 — `ลืม Trait Bound ใน Generic Function `
 
 **Problem**
 
-`[อธิบายปัญหา]`
+`เมื่อใช้ Generic Function แล้วเรียก method ที่มาจาก Trait จะต้อง implement Trait นั้นทำให้ Rust ไม่สามารถรู้ได้ว่า method นั้นมีอยู่จริง`
 
 **Incorrect Code**
 
 ```rust
-// Incorrect example
+trait Animal {
+    fn make_sound(&self);
+}
+
+struct Dog;
+
+impl Animal for Dog {
+    fn make_sound(&self) {
+        println!("Woof!");
+    }
+}
+
+fn make_sound<T>(animal: T) {
+    animal.make_sound(); // Error
+}
+
+fn main() {
+    let dog = Dog;
+    dog.make_sound();
+}
 ```
 
 **Correct Code**
 
 ```rust
-// Correct example
+trait Animal {
+    fn make_sound(&self);
+}
+
+struct Dog;
+
+impl Animal for Dog {
+    fn make_sound(&self) {
+        println!("Woof!");
+    }
+}
+
+fn make_sound<T: Animal>(animal: T) {
+    animal.make_sound();
+}
+
+fn main() {
+    let dog = Dog;
+    make_sound(dog);
+}
+
 ```
 
 **Why?**
 
-`[อธิบายสาเหตุ]`
+`T สามารถเป็น Type อะไรก็ได้ ดังนั้น Rust ไม่สามารถรับประกันได้ว่า T จะมี make_sound() เลยจะต้องเพิ่ม T: Animal เพื่อให้ Rust รู้ว่า T ต้องเป็น Type ที่ implement Animal เมื่อมี Trait Bound แล้ว Rust จึงมั่นใจว่า animal สามารถเรียก make_sound() ได้ `
 
 ---
 
-### Mistake 2 — `[ชื่อข้อผิดพลาด]`
+### Mistake 2 — `ลืม Implement Trait ให้กับ Type`
 
 **Problem**
 
-`[อธิบายปัญหา]`
+`ประกาศ Trait และสร้าง Type แล้ว แต่ไม่ได้ใช้ impl เพื่อบอกว่า Type นั้น implement Trait ทำให้ไม่สามารถเรียก method ของ Trait ผ่าน Type นั้นได้`
 
 **Incorrect Code**
 
 ```rust
-// Incorrect example
+trait Animal {
+    fn make_sound(&self);
+}
+
+struct Dog;
+
+fn main() {
+    let dog = Dog;
+    dog.make_sound();//error
+}
 ```
 
 **Correct Code**
 
 ```rust
-// Correct example
+trait Animal {
+    fn make_sound(&self);
+}
+
+struct Dog;
+
+impl Animal for Dog {
+    fn make_sound(&self) {
+        println!("Woof!");
+    }
+}
+
+fn main() {
+    let dog = Dog;
+    dog.make_sound();
+}
 ```
 
 **Why?**
 
-`[อธิบายสาเหตุ]`
+`การประกาศ trait Animal เป็นการกำหนดว่า Animal นั้นต้องมี make_sound() แต่ไม่ได้หมายความว่า Dog จะมีความสามารถของ Animal ซึ่ง Dog ยังไม่ได้เป็น Animal จนกว่าเราจะเขียน Trait Implementation ที่กำหนดให้ Dog มีความสามารถตาม Animal และบอกวิธีทำงานของความสามารถนั้น`
 
 ---
 
@@ -390,47 +453,139 @@ fn main() {
 
 > จัดทำแบบฝึกหัด **2 ข้อ** ที่สอดคล้องกับ Topic และมีระดับความยากเหมาะสม
 
-### Exercise 1 — `[ชื่อโจทย์]`
+### Exercise 1 — `ระบบการชำระเงิน`
 
 **Problem**
 
-`[เขียนโจทย์]`
+`ให้สร้าง trait Payment มี Method pay()สำหรับกำหนดพฤติกรรมการจ่ายเงิน โดยมี Struct 3 ประเภท คือ 
+
+1.Cash โดยให้แสดงข้อความ "Pay with Cash"
+
+2.QRCode แสดงข้อความ "Pay with QR Code" 
+
+3.CreditCard แสดงข้อความ "Pay with Credit Card"" `
 
 **Hint**
 
-`[คำใบ้]`
+`ใช้ trait Payment เพื่อกำหนด Method pay() และใช้ impl กำหนด Payment สำหรับแต่ละประเภท`
 
 **Solution**
 
 ```rust
-// Solution code
+trait Payment {
+ fn pay(&self);
+}
+struct CreditCard;
+struct Cash;
+struct QRCode;
+
+impl Payment for CreditCard {
+ fn pay(&self) {
+     println!("Pay with Credit Card");
+    }
+}
+
+impl Payment for Cash {
+    fn pay(&self) {
+        println!("Pay with Cash");
+    }
+}
+
+impl Payment for QRCode {
+    fn pay(&self) {
+        println!("Pay with QR Code");
+    }
+}
+
+
+fn main() {
+    let credit_card = CreditCard;
+    let cash = Cash;
+    let qr_code = QRCode;
+    credit_card.pay();
+    cash.pay();
+    qr_code.pay();
+}
 ```
 
 **Explanation**
 
-`[อธิบายแนวทางแก้]`
+`Payment เป็น Trait ที่กำหนดว่า Type ที่ Implement Trait นี้จะต้องมี Method pay() แล้วก็กำหนด Struct 3 แบบ คือ CreditCard, Cash และ QRCode ทั้ง 3 Struct Implement Payment เหมือนกัน แต่กำหนดการทำงานของ pay() แตกต่างกันคือส่วนที่พิมพ์บอกด้านในว่าจ่ายกับอะไรดังนั้นเมื่อเรียกแต่ละตัวก็จะจะทำงานตาม Implementation ของตัวเอง`
 
 ---
 
-### Exercise 2 — `[ชื่อโจทย์]`
+### Exercise 2 — `ระบบจองคอร์ทแบดมินตัน`
 
 **Problem**
 
-`[เขียนโจทย์]`
+`ให้สร้าง trait Booking ที่มี Method book() สำหรับกำหนดพฤติกรรมการจองสนาม จากนั้นสร้าง Struct 4 ประเภท ได้แก่
+
+1.Student สำหรับนักศึกษาจองคอร์ท แสดงข้อความ "Student booked a badminton court"
+
+2.Academic_staffสำหรับบุคลากรจองคอร์ท แสดงข้อความ "Academic staff booked a badminton court"
+
+3.Guest สำหรับบุคคลภายนอกจองคอร์ท แสดงข้อความ "Guest booked a badminton court"
+
+4.Athlete สำหรับนักกีฬาจองคอร์ท แสดงข้อความ "Athlete booked a badminton court"
+`
 
 **Hint**
 
-`[คำใบ้]`
+`ใช้ trait Booking เพื่อกำหนด Method book() และใช้ impl กำหนด Booking สำหรับแต่ละประเภท`
 
 **Solution**
 
 ```rust
-// Solution code
+trait Booking {
+    fn book(&self);
+}
+
+struct Student;
+struct Staff;
+struct Guest;
+struct Athlete;
+
+impl Booking for Student {
+    fn book(&self) {
+        println!("Student booked a badminton court");
+    }
+}
+
+impl Booking for Staff {
+    fn book(&self) {
+        println!("Staff booked a badminton court");
+    }
+}
+
+impl Booking for Guest {
+    fn book(&self) {
+        println!("Guest booked a badminton court");
+    }
+}
+
+impl Booking for Athlete {
+    fn book(&self) {
+        println!("Athlete booked a badminton court");
+    }
+}
+
+fn main() {
+    let student = Student;
+    let staff = Staff;
+    let guest = Guest;
+    let athlete = Athlete;
+
+    student.book();
+    staff.book();
+    guest.book();
+    athlete.book();
+}
 ```
+
 
 **Explanation**
 
-`[อธิบายแนวทางแก้]`
+`Booking เป็น Trait ที่กำหนด Method book() สำหรับการจองคอร์ทจากนั้นสร้าง Struct 4 ประเภท ได้แก่ Student, Staff, Guest และ Athlete โดยแต่ละประเภท Implement Trait Booking และกำหนดการทำงานของ book() แตกต่างกัน`
 
 ---
 
