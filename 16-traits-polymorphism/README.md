@@ -817,7 +817,7 @@ int main() {
 
 **Member 3**
 
-`[สิ่งที่รับผิดชอบ]`
+`Rust VS OtherLanguage และ PPL Analysis`
 
 **Member 4**
 
@@ -831,10 +831,10 @@ int main() {
 
 > แนะนำให้มีอย่างน้อย **4 แหล่งอ้างอิง** และควรใช้เอกสารทางการเป็นหลัก
 
-1. `[The Rust Programming Language — Rust Book]`
+1. `The Rust Programming Language - https://doc.rust-lang.org/book/title-page.html`
 2. `[Rust by Example / Rust Reference]`
 3. `[Official documentation ที่เกี่ยวข้องกับ Topic]`
-4. `[แหล่งอ้างอิงเพิ่มเติม]`
+4. `Polymorphism in Python - https://www.codecademy.com/article/understanding-polymorphism-in-python`
 
 ---
 
@@ -844,8 +844,7 @@ int main() {
 
 | AI Tool | Purpose | How the Result Was Verified |
 |---|---|---|
-| `[เช่น ChatGPT]` | `[ใช้เพื่ออะไร]` | `[ตรวจสอบอย่างไร]` |
-| `[AI tool]` | `[ใช้เพื่ออะไร]` | `[ตรวจสอบอย่างไร]` |
+| `ChatGPT` | `แปลบทความ rust และเอกสารต่างๆ` | `ทำการตรวจทานเพิ่มเติม` |
 
 ### Declaration
 
@@ -881,7 +880,7 @@ int main() {
 
 **How did you solve them?**
 
-`[วิธีแก้ปัญหา]`
+``
 
 ---
 
