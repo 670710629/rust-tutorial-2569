@@ -37,6 +37,295 @@
 
 ---
 
+## 6. Runnable Code Examples
+
+> **ข้อกำหนด:** Code ทุกตัวต้อง Compile และ Run ได้จริงก่อนนำมาใส่ในเอกสาร
+
+### Example 1 — โจทย์เดียว 3 แนวทาง (Imperative, Functional, OOP-style)
+
+**Purpose:** แก้โจทย์ "หาผลรวมกำลังสองของเลขคู่" ด้วย 3 paradigm เพื่อแสดงว่า Rust เป็นภาษา multi-paradigm
+
+```rust
+// OOP style: struct + impl
+struct NumberList {
+    numbers: Vec<i32>,
+}
+
+impl NumberList {
+    fn new(numbers: Vec<i32>) -> Self {
+        NumberList { numbers }
+    }
+
+    fn sum_even_squares(&self) -> i32 {
+        self.numbers
+            .iter()
+            .filter(|&&n| n % 2 == 0)
+            .map(|&n| n * n)
+            .sum()
+    }
+}
+
+// Imperative style: ตัวแปร mutable + loop
+fn imperative(numbers: &[i32]) -> i32 {
+    let mut total = 0;
+    for &n in numbers {
+        if n % 2 == 0 {
+            total += n * n;
+        }
+    }
+    total
+}
+
+// Functional style: iterator chain ไม่มีตัวแปรที่ถูกแก้ไข
+fn functional(numbers: &[i32]) -> i32 {
+    numbers
+        .iter()
+        .filter(|&&n| n % 2 == 0)
+        .map(|&n| n * n)
+        .sum()
+}
+
+fn main() {
+    let data = vec![1, 2, 3, 4, 5, 6];
+
+    println!("Imperative: {}", imperative(&data));
+    println!("Functional: {}", functional(&data));
+
+    let list = NumberList::new(data);
+    println!("OOP-style:  {}", list.sum_even_squares());
+}
+```
+
+**Expected Output**
+
+```text
+Imperative: 56
+Functional: 56
+OOP-style:  56
+```
+
+**Explanation**
+
+- **Imperative:** ประกาศ `let mut total = 0` แล้ววน `for` เพื่อสะสมค่าทีละรอบ เป็นการบอกคอมพิวเตอร์ว่า "ทำอะไรทีละขั้น" โดยมีการเปลี่ยนค่าตัวแปร (mutable state)
+- **Functional:** ใช้ iterator chain `filter` (เลือกเลขคู่) → `map` (ยกกำลังสอง) → `sum` (รวมค่า) โดยไม่มีตัวแปรที่ถูกแก้ไขเลย
+- **OOP-style:** Rust ไม่มี `class` แต่ใช้ `struct` เก็บข้อมูล และ `impl` กำหนด method (`new`, `sum_even_squares`) เพื่อรวมข้อมูลกับพฤติกรรมไว้ด้วยกัน
+- ทั้ง 3 แบบได้ผลลัพธ์เท่ากันคือ 4 + 16 + 36 = 56
+
+---
+
+### Example 2 — Immutable by default และ Ownership
+
+**Purpose:** แสดงจุดเด่นด้านความปลอดภัยของ Rust ได้แก่ ตัวแปรแก้ค่าไม่ได้โดย default และระบบ ownership
+
+```rust
+fn main() {
+    // ตัวแปรเป็น immutable โดย default
+    let x = 5;
+    println!("x = {}", x);
+
+    // ต้องประกาศ mut ถึงจะแก้ค่าได้
+    let mut y = 5;
+    y += 1;
+    println!("y = {}", y);
+
+    // ownership: การ "move" ค่า
+    let s1 = String::from("Rust");
+    let s2 = s1; // s1 ถูก move ไปให้ s2 แล้ว
+    println!("s2 = {}", s2);
+
+    // ถ้าต้องการใช้ทั้งสองตัว ต้อง clone
+    let s3 = s2.clone();
+    println!("s2 = {}, s3 = {}", s2, s3);
+}
+```
+
+**Expected Output**
+
+```text
+x = 5
+y = 6
+s2 = Rust
+s2 = Rust, s3 = Rust
+```
+
+**Explanation**
+
+- `let x = 5;` ตัวแปรเป็น immutable ถ้าพยายามกำหนดค่าซ้ำ compiler จะแจ้ง error (E0384)
+- `let mut y = 5;` ใส่ `mut` เพื่อบอกว่าตั้งใจให้แก้ค่าได้
+- `let s2 = s1;` เนื่องจาก `String` เก็บข้อมูลบน heap ค่าจึงถูก **move** ไปให้ `s2` และ `s1` ใช้งานต่อไม่ได้ ถ้าเรียกใช้ `s1` อีกจะเกิด error (E0382)
+- `s2.clone()` สร้างสำเนาข้อมูลใหม่ ทำให้ใช้ได้ทั้ง `s2` และ `s3`
+
+---
+
+## 7. Common Mistakes
+
+### Mistake 1 — ใส่ semicolon ท้ายค่าที่ต้องการ return
+
+**Problem**
+
+ใน Rust บรรทัดสุดท้ายของฟังก์ชันที่ไม่มี `;` คือ expression ที่เป็นค่า return ถ้าใส่ `;` จะกลายเป็น statement และฟังก์ชันคืนค่า `()` แทน
+
+**Incorrect Code**
+
+```rust
+fn add(a: i32, b: i32) -> i32 {
+    a + b;
+}
+
+fn main() {
+    println!("{}", add(2, 3));
+}
+```
+
+**Correct Code**
+
+```rust
+fn add(a: i32, b: i32) -> i32 {
+    a + b
+}
+
+fn main() {
+    println!("{}", add(2, 3));
+}
+```
+
+**Why?**
+
+Rust เป็นภาษา expression-oriented โดย block `{ ... }` ให้ค่าเป็น expression สุดท้าย การใส่ `;` ทำให้ค่าถูกทิ้ง compiler จึงฟ้อง mismatched types (E0308) เพราะประกาศว่าจะคืน `i32` แต่ได้ `()`
+
+---
+
+### Mistake 2 — บวกตัวเลขต่างชนิดกันโดยตรง
+
+**Problem**
+
+Rust ไม่แปลงชนิดตัวเลขให้อัตโนมัติ (no implicit conversion)
+
+**Incorrect Code**
+
+```rust
+fn main() {
+    let a: i32 = 5;
+    let b: f64 = 2.5;
+    let sum = a + b;
+    println!("{}", sum);
+}
+```
+
+**Correct Code**
+
+```rust
+fn main() {
+    let a: i32 = 5;
+    let b: f64 = 2.5;
+    let sum = a as f64 + b;
+    println!("{}", sum);
+}
+```
+
+ผลลัพธ์: `7.5`
+
+**Why?**
+
+Rust เป็น statically typed และ strongly typed ต้องแปลงชนิดด้วย `as` อย่างชัดเจน เพื่อป้องกันข้อผิดพลาดจากการแปลงที่ผู้เขียนไม่ได้ตั้งใจ (error E0277)
+
+---
+
+## 8. Exercises
+
+### Exercise 1 — ผลรวมกำลังสองแบบ Imperative และ Functional
+
+**Problem**
+
+เขียนโปรแกรมหาผลรวมของ 1² + 2² + 3² + 4² + 5² สองแบบ คือ Imperative (ใช้ loop) และ Functional (ใช้ iterator)
+
+**Hint**
+
+แบบ Imperative ใช้ `let mut` กับ `for n in 1..=5` แบบ Functional ใช้ `(1..=5).map(...).sum()`
+
+**Solution**
+
+```rust
+fn main() {
+    // Imperative
+    let mut total = 0;
+    for n in 1..=5 {
+        total += n * n;
+    }
+
+    // Functional
+    let total_f: i32 = (1..=5).map(|n| n * n).sum();
+
+    println!("Imperative: {}", total);
+    println!("Functional: {}", total_f);
+}
+```
+
+ผลลัพธ์:
+
+```text
+Imperative: 55
+Functional: 55
+```
+
+**Explanation**
+
+แบบแรกสะสมค่าในตัวแปร mutable ทีละรอบ แบบที่สองสร้างช่วง 1..=5 แล้วแปลงค่าและรวมด้วย iterator โดยไม่มีตัวแปรที่ถูกแก้ไข ผลลัพธ์เท่ากัน
+
+---
+
+### Exercise 2 — struct และ method
+
+**Problem**
+
+สร้าง `struct Rectangle` ที่มี `width` และ `height` พร้อม method `area()` และ `is_square()` แล้วทดสอบกับสี่เหลี่ยม 2 รูป
+
+**Hint**
+
+ใช้ `impl Rectangle { ... }` และ method รับ `&self`
+
+**Solution**
+
+```rust
+struct Rectangle {
+    width: u32,
+    height: u32,
+}
+
+impl Rectangle {
+    fn new(width: u32, height: u32) -> Self {
+        Rectangle { width, height }
+    }
+
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn is_square(&self) -> bool {
+        self.width == self.height
+    }
+}
+
+fn main() {
+    let r = Rectangle::new(4, 5);
+    let s = Rectangle::new(3, 3);
+    println!("r: area = {}, square? {}", r.area(), r.is_square());
+    println!("s: area = {}, square? {}", s.area(), s.is_square());
+}
+```
+
+ผลลัพธ์:
+
+```text
+r: area = 20, square? false
+s: area = 9, square? true
+```
+
+**Explanation**
+
+`struct` เก็บข้อมูล ส่วน `impl` กำหนดพฤติกรรม `&self` คือการยืมค่ามาอ่านโดยไม่ย้าย ownership ซึ่งเป็นรูปแบบ OOP-style ของ Rust
+---
+
 ## 9. PPL Perspective
 
 > **ส่วนนี้เป็นหัวใจของรายวิชา Principles of Programming Languages**
@@ -156,11 +445,11 @@ int main() {
 
 **Member 1**
 
-`[สิ่งที่รับผิดชอบ]`
+Concept + Short Code Illustration
 
 **Member 2**
 
-`[สิ่งที่รับผิดชอบ]`
+Detailed Code + Live Demo
 
 **Member 3**
 
@@ -168,7 +457,7 @@ Githup และ PowerPoint ในส่วนของ Rust vs Other Language +
 
 **Member 4**
 
-`[สิ่งที่รับผิดชอบ]`
+Exercies, Common Mistakes, Challenge
 
 > สมาชิกทุกคนต้องสามารถอธิบาย Code ของกลุ่มได้ ไม่ใช่เฉพาะส่วนที่ตนเองเขียน
 
