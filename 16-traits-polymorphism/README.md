@@ -590,9 +590,8 @@ fn main() {
 **Explanation**
 
 `Booking เป็น Trait ที่กำหนด Method book() สำหรับการจองคอร์ทจากนั้นสร้าง Struct 4 ประเภท ได้แก่ Student, Staff, Guest และ Athlete โดยแต่ละประเภท Implement Trait Booking และกำหนดการทำงานของ book() แตกต่างกัน`
-### Challenge — `ระบบสั่งอาหาร`
+### Challenge — `คำถามท้าทายผู้ฟัง`
 
-**Challenge — คำถามท้าทายผู้ฟัง**
 
 `โค้ดด้านล่างนี้ compile ผ่านหรือไม่? ถ้าไม่ผ่าน ติดตรงไหน? `
 
