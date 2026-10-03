@@ -790,7 +790,7 @@ int main() {
 ---
 ### Analysis
 
-`Rust จะใช้ trait เป็นตัวกำหนดพฤติกรรมที่สามารถนำไปใช้ได้แต่สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างกันได้ โดย trait สามารถมีหลาย method ได้และใช้ impl ในการ implement funtiocn ใน trait`
+`Rust จะไม่มี class และ Inheritance แต่จะใช้ trait เป็นตัวกำหนดพฤติกรรมที่สามารถนำไปใช้ได้แต่สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างกันได้ โดย trait สามารถมีหลาย method ได้และใช้ impl ในการ implement funtiocn ใน trait`
 
 ---
 
@@ -832,8 +832,8 @@ int main() {
 > แนะนำให้มีอย่างน้อย **4 แหล่งอ้างอิง** และควรใช้เอกสารทางการเป็นหลัก
 
 1. `The Rust Programming Language - https://doc.rust-lang.org/book/title-page.html`
-2. `[Rust by Example / Rust Reference]`
-3. `[Official documentation ที่เกี่ยวข้องกับ Topic]`
+2. `Java Polymorphism - https://www.w3schools.com/java/java_polymorphism.asp`
+3. `Polymorphism in C++ - https://www.udacity.com/blog/understanding-polymorphism-in-cpp/`
 4. `Polymorphism in Python - https://www.codecademy.com/article/understanding-polymorphism-in-python`
 
 ---
