@@ -590,6 +590,116 @@ fn main() {
 **Explanation**
 
 `Booking เป็น Trait ที่กำหนด Method book() สำหรับการจองคอร์ทจากนั้นสร้าง Struct 4 ประเภท ได้แก่ Student, Staff, Guest และ Athlete โดยแต่ละประเภท Implement Trait Booking และกำหนดการทำงานของ book() แตกต่างกัน`
+### Challenge — `ระบบสั่งอาหาร`
+
+**Challenge — คำถามท้าทายผู้ฟัง**
+
+`โค้ดด้านล่างนี้ compile ผ่านหรือไม่? ถ้าไม่ผ่าน ติดตรงไหน? `
+
+```rust
+trait Order {
+    fn order(&self);
+}
+
+struct Student;
+struct Teacher;
+struct Staff;
+struct Guest;
+
+impl Order for Student {
+    fn order(&self) {
+        println!("Student ordered food");
+    }
+}
+
+impl Order for Teacher {
+    fn order(&self) {
+        println!("Teacher ordered food");
+    }
+}
+
+impl Order for Staff {
+    fn order(&self) {
+        println!("Staff ordered food");
+    }
+}
+
+fn make_order<T: Order>(customer: T) {
+    customer.order();
+}
+
+fn main() {
+    let student = Student;
+    let teacher = Teacher;
+    let staff = Staff;
+    let guest = Guest;
+
+    make_order(student);
+    make_order(teacher);
+    make_order(staff);
+    make_order(guest);
+}
+```
+
+**Solution**
+
+`compile ไม่ผ่าน เพราะ error[E0277]: the trait bound `Guest: Order` is not satisfied`
+
+**Explanation**
+
+`จาก Code จะเห็นว่า Student, Teacher และ Staff มีการ Implement Order แล้วแต่ Guest ยังไม่ได้ Implement Trait Order ขณะที่ Function กำหนด Trait Bound ว่า T ต้องเป็น Type ที่ Implement Order ดังนั้นเมื่อเรียก make_order(guest)  Rust จะตรวจสอบว่า Guest มี Order หรือไม่ แต่ไม่พบ จึงเกิด Compile Error`
+
+**Correct Code**
+```rust
+trait Order {
+    fn order(&self);
+}
+
+struct Student;
+struct Teacher;
+struct Staff;
+struct Guest;
+
+impl Order for Student {
+    fn order(&self) {
+        println!("Student ordered food");
+    }
+}
+
+impl Order for Teacher {
+    fn order(&self) {
+        println!("Teacher ordered food");
+    }
+}
+
+impl Order for Staff {
+    fn order(&self) {
+        println!("Staff ordered food");
+    }
+}
+
+impl Order for Guest {
+    fn order(&self) {
+        println!("Guest ordered food");
+    }
+}
+
+fn make_order<T: Order>(customer: T) {
+    customer.order();
+}
+
+fn main() {
+    let student = Student;
+    let teacher = Teacher;
+    let staff = Staff;
+    let guest = Guest;
+
+    make_order(student);
+    make_order(teacher);
+    make_order(staff);
+    make_order(guest);
+}
+```
 
 ---
 
