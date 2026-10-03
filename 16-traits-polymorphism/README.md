@@ -137,6 +137,10 @@ impl Speak for Dog {
         String::from("Woof!")
     }
 }
+fn main() {
+    let d = Dog ;
+    println!("{}", d.speak());
+}
 ```
 **Explanation**
 
