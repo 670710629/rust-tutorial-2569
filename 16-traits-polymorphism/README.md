@@ -714,11 +714,11 @@ fn main() {
 
 ### 9.2 Semantics
 
-`ดย trait จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ stuct ซึ่งแต่ละ struct สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างได้ และใช้ impl ในการ implement trait ออกมา ใช้ generic bound เพื่อบังคับว่าประเภทที่ใช้ต้องพฤติกรรมตามที่ traitsกำหนดไว้จึงจะสามารถใช้งานได้ , Trait Bound ใช้กำหนดว่า Generic Type ต้อง implement Trait ใด Trait หนึ่ง เพื่อให้ function หรือ struct สามารถเรียกใช้งาน method ที่กำหนดใน Trait ได้ เช่น impl Eat for Person โดย Eat คือ trait`
+`โดย trait จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ stuct ซึ่งแต่ละ struct สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างได้ และใช้ impl ในการ implement trait ออกมา เช่น impl Eat for Person โดย Eat คือ trait `
 
 ### 9.3 Type System
 
-`static type system `
+`static type system จะตวรจสอบชนิดของตัวแปรตั้งแต่ compile time และใช้ generic bound เพื่อบังคับว่าประเภทที่ใช้ต้องพฤติกรรมตามที่ trait กำหนดไว้จึงจะสามารถใช้งานได้ , Trait Bound ใช้กำหนดว่า Generic Type ต้อง implement Trait ใด Trait หนึ่ง เพื่อให้ function หรือ struct สามารถเรียกใช้งาน method ที่กำหนดใน Trait ได้ `
 
 ### 9.4 Memory / Resource Management
 
@@ -740,7 +740,7 @@ fn main() {
 
 | Aspect | Rust | Other Language |
 |---|---|---|
-| Syntax | `Rust : จะใช้ Traits และ struct , impl ` | `Java : จะใช้ interface , extends ,implements และ class `<br>` Python : ใช้ class โดยการ overriding method หรือ duck Typing  `<br>` C++ : ใช้ class Function Overloading , Function Overriding , Virtual Functions ` |
+| Syntax | `Rust : ใช้ Traits และ struct , impl ` | `Java : ใช้ interface , extends ,implements และ class `<br>` Python : ใช้ class โดยการ overriding method หรือ duck Typing  `<br>` C++ : ใช้ class Function Overloading , Function Overriding , Virtual Functions ` |
 | Semantics / Behavior | ` Rust : โดย trait จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ struct ซึ่งแต่ละ struct สามารถกำหนดการทำงานของพฤติกรรมให้แตกต่างได้ ` | ` java : โดย interface จะกำหนดพฤติกรรมที่มีร่วมกันให้แต่ละ class ซึ่งแต่ละ class สามารถ implements หรือ overriding การทำงานให้แตกต่างได้ `<br> `Python : แต่ละ class สามารถมี method ชื่อเดียวกันได้แต่กำหนดการทำงานแตกต่างกันได้  โดยใช้  duck Typing หรือ overriding `<br>` C++ : โดยคลาสหลักสามารถกำหนด method ให้เป็น virtual method และคลาสลูกสามารถ override methods นั้นได้ ` |
 | Type System | ` Rust : Static Typing ` | ` java : Static Typing `<br>` Python : Dynamic Typing `<br>` C++ : Static Typing  `|
 | Memory Management | `Rust : ใช้ Ownership + Borrowing  ` | `java : ใช้ Garbage Collector `<br>` Python : ใช้ Reference Counting  และ Garbage Collection โปรแกรมเมอร์ไม่จำเป็นต้องจัดการเอง  `<br>` C++ : ใช้แบบ Dynamic Memory Allocation ในขณะ runtime โดยใช้ new และ deleteเพื่อคืนหน่วยความจำ(deallocate) ` |
@@ -922,7 +922,7 @@ int main() {
 
 **Member 1**
 
-`[สิ่งที่รับผิดชอบ]`
+`Concept + Short Code Illustration`
 
 **Member 2**
 
@@ -934,7 +934,7 @@ int main() {
 
 **Member 4**
 
-`[สิ่งที่รับผิดชอบ]`
+`Exercises + Common Mistakes + Challenge`
 
 > สมาชิกทุกคนต้องสามารถอธิบาย Code ของกลุ่มได้ ไม่ใช่เฉพาะส่วนที่ตนเองเขียน
 
@@ -961,14 +961,14 @@ int main() {
 
 ### Declaration
 
-- [ ] Code ทุกส่วนที่นำเสนอได้รับการ Compile และทดสอบแล้ว
-- [ ] สมาชิกทุกคนสามารถอธิบาย Code ที่นำเสนอได้
-- [ ] ตรวจสอบข้อมูลจากแหล่งอ้างอิงที่น่าเชื่อถือแล้ว
-- [ ] ระบุการใช้ AI อย่างโปร่งใส
+- [✓] Code ทุกส่วนที่นำเสนอได้รับการ Compile และทดสอบแล้ว
+- [✓] สมาชิกทุกคนสามารถอธิบาย Code ที่นำเสนอได้
+- [✓] ตรวจสอบข้อมูลจากแหล่งอ้างอิงที่น่าเชื่อถือแล้ว
+- [✓] ระบุการใช้ AI อย่างโปร่งใส
 
 **รายละเอียดการใช้ AI**
 
-`[อธิบายว่าใช้ AI ในขั้นตอนใด และสมาชิกตรวจสอบผลลัพธ์อย่างไร]`
+`ใช้ AI ในการแปลเอกสารต่างๆ และการตรวจสอบจากหลายๆแหล่งรวมกันเพื่อป้องกันความผิดพลาด`
 
 ---
 
@@ -985,35 +985,35 @@ int main() {
 
 **How did your team collaborate?**
 
-`[อธิบายกระบวนการทำงานร่วมกัน]`
+`เริ่มจับกลุ่มคุยกันและแบ่งงานในส่วนที่แต่ละสมาชิกรับผิดชอบและนำขึ้น github และนำเนื้อกาที่รับผิดชอบใส่ในสไลด์โดยมีคนใดคนหนึ่งสร้าง branch และ link canva เพื่อทำงานรว่มกันและช่วยกันตรวจสอบความถูกต้อง`
 
 **Problems encountered**
 
-`[ปัญหาที่พบ]`
+`ยังไม่คุ้นชินการใช้ github จึงต้องใช้เวลาศึกษาเพิ่มเติ่ม`
 
 **How did you solve them?**
 
-``
+`สอบถามสมาชิกในกลุ่มที่มีประสบการณ์ใช้ github มาก่อน`
 
 ---
 
 ## 15. Final Checklist
 
-- [ ] Learning Objectives ครบ 3–4 ข้อ
-- [ ] Key Concepts ครบถ้วน
-- [ ] Syntax / Rules
+- [✓] Learning Objectives ครบ 3–4 ข้อ
+- [✓] Key Concepts ครบถ้วน
+- [✓] Syntax / Rules
 - [ ] Runnable Code Examples
 - [ ] Code Compile และ Run ได้จริง
-- [ ] Common Mistakes
-- [ ] Exercises 2 ข้อ พร้อม Solutions
-- [ ] PPL Perspective
-- [ ] Rust vs Other Language
-- [ ] References อย่างน้อย 4 แหล่ง
-- [ ] AI Usage Declaration
-- [ ] GitHub Contribution
+- [✓] Common Mistakes
+- [✓] Exercises 2 ข้อ พร้อม Solutions
+- [✓] PPL Perspective
+- [✓] Rust vs Other Language
+- [✓] References อย่างน้อย 4 แหล่ง
+- [✓] AI Usage Declaration
+- [✓] GitHub Contribution
 - [ ] สมาชิกทั้ง 4 คนมีส่วนร่วม
 - [ ] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
-- [ ] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
+- [✓] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
 
 ---
 
@@ -1021,7 +1021,7 @@ int main() {
 
 **Repository:** `[GitHub repository URL]`
 
-**Chapter Path:** `[เช่น chapters/01-introduction/]`
+**Chapter Path:** `[16-traits-polymorphism]`
 
 **Final PR:** `#[PR number]`
 
