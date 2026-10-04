@@ -1205,8 +1205,7 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 5. Python Documentation — Common Sequence Operations / Slicing
 `https://docs.python.org/3/library/stdtypes.html`
 4. cppreference — C / C++ Arrays, Pointers and std::span
-<br>`https://en.cppreference.com/w/c/language/array`
-`https://en.cppreference.com/w/cpp/container/span`
+<br>`https://en.cppreference.com/w/c/language/array`<br>`https://en.cppreference.com/w/cpp/container/span`
 5. Oracle Java Documentation — Arrays
 `https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html`
 6. Kodekloud - The Slice Type
