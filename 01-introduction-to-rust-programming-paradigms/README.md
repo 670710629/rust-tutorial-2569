@@ -49,6 +49,28 @@ Rust เป็นภาษาโปรแกรมระบบ ที่พั�
 - **3.Zero-Cost Abstractions ** - คือการใช้ฟีเจอร์ระดับสูง เช่น Iterators, Generics หรือ Closure ไม่ทำให้ประสิทธิภาพการทำงานลดลงเมื่อเทียบกับการเขียนโค้ดระดับล่าง
 - **4.Tooling แบบครบวงจร ** - มี Cargo ซึ่งเป็นทั้ง Package Manager และ Build System ในตัว ช่วยจัดการ Dependencies, การบิวด์โปรเจกต์, การรัน Test และการสร้าง Documentation ได้อย่างสะดวก
 
+### **ตัวอย่างโค้ด Rust แบบสั้นๆ** ###
+```Rust
+fn main() {
+    let name = "Rust"; 
+    let mut score = 90; 
+    score = score + 10;
+
+    println!("Hello, {}! Your score is {}.", name, score);
+}
+```
+**Expected Output**
+```rust
+(Output):PlaintextHello, Rust! Your score is 100.
+```
+**Explanation**
+- การทำงานfn main() { ... }จุดเริ่มต้นการทำงานของโปรแกรม (Main function) โค้ดทั้งหมดจะเริ่มรันจากตรงนี้
+- let name = "Rust";สร้างตัวแปรชื่อ name โดยค่าเริ่มต้นของ Rust ตัวแปรจะ แก้ไขไม่ได้ (Immutable)
+- let mut score = 90;สร้างตัวแปรชื่อ score โดยใส่คีย์เวิร์ด mut (Mutable) เพื่อบอกว่าตัวแปรนี้ สามารถเปลี่ยนค่าได้
+- score = score + 10;อัปเดตค่าใน score เพิ่มขึ้นอีก 10 (กลายเป็น 100)
+- println!(...);คำสั่งพิมพ์ข้อความออกทางหน้าจอ โดยวงเล็บปีกกา {} จะถูกแทนที่ด้วยค่าของตัวแปรตามลำดับ (name และ score)
+
+
 
 ---
 ## 4. Key Concepts ##
@@ -618,7 +640,7 @@ Exercies, Common Mistakes, Challenge
 
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
-| Member 1 | `0` | `21` | `1` | `0` | `Concept + Short Code Illustration` |
+| Member 1 | `0` | `27` | `1` | `0` | `Concept + Short Code Illustration` |
 | Member 2 | `0` | `3` | `1` | `8` | `Detailed Code + Live Demo` |
 | Member 3 | `0` | `9` | `1` | `2` | `Rust vs Other Language + PPL Analysis` |
 | Member 4 | `0` | `4` | `1` | `5` | `Exercises + Common Mistakes + Challenge` |
