@@ -10,10 +10,10 @@
 
 | # | Name | Student ID | GitHub Username | Main Responsibility |
 |---|---|---|---|---|
-| 1 | นาธาน ศรีนาคาร | 660710606 | `@[660710606]` | Concept + Code |
-| 2 | ภัทรพล ก่อมงคลกุล | 660710613 | `@[660710613]` | Code + Demo |
-| 3 | พีรดนษ์ นิกพงศ์ | 660710624 | `@[660710624]` | Rust vs Other Language + PPL |
-| 4 | รชต กระเช้าเพีชร์ | 660710626 | `@[660710626]` | Exercises + Common Mistakes |
+| 1 | นาธาน ศรีนาคาร | 660710606 | `@660710606` | Concept + Code |
+| 2 | ภัทรพล ก่อมงคลกุล | 660710613 | `@660710613` | Code + Demo |
+| 3 | พีรดนษ์ นิกพงศ์ | 660710624 | `@660710624` | Rust vs Other Language + PPL |
+| 4 | รชต กระเช้าเพีชร์ | 660710626 | `@660710626` | Exercises + Common Mistakes |
 
 ---
 
@@ -572,19 +572,23 @@ Python ผูกชื่อกับ object และให้ rebind ชื่
 
 **Member 1**
 
-`[สิ่งที่รับผิดชอบ]`
+นาธาน ศรีนาคาร — **Concept + Short Code Illustration**  
+รับผิดชอบอธิบายแนวคิดหลักของหัวข้อ ได้แก่ `let`, `mut`, `const` และ shadowing พร้อมยกตัวอย่างโค้ดสั้น ๆ ประกอบการอธิบาย และนำเสนอส่วน Concept
 
 **Member 2**
 
-`[สิ่งที่รับผิดชอบ]`
+ภัทรพล ก่อมงคลกุล — **Detailed Code + Live Demo**  
+รับผิดชอบโค้ดตัวอย่างแบบละเอียด (Example 1–2) ครอบคลุมตัวแปร, mutability และ data types พร้อมสาธิตการ compile และรันโค้ดสดระหว่างนำเสนอ
 
 **Member 3**
 
-`[สิ่งที่รับผิดชอบ]`
+พีรดนษ์ นิกพงศ์ — **Rust, Other Language, PPL Analysis**  
+รับผิดชอบการเปรียบเทียบ Rust กับ Python และการวิเคราะห์ตามหลัก Principles of Programming Languages (syntax, semantics, type system, memory management) และนำเสนอส่วนนี้
 
 **Member 4**
 
-`[สิ่งที่รับผิดชอบ]`
+รชต กระเช้าเพีชร์ — **Exercises, Common Mistakes, Challenge**  
+รับผิดชอบแบบฝึกหัด 2 ข้อพร้อมเฉลย, ข้อผิดพลาดที่พบบ่อยพร้อมตัวอย่างโค้ดที่ผิดและโค้ดที่ถูกต้อง และโจทย์ท้าทายให้ผู้ฟังลองตอบระหว่างนำเสนอ
 
 > สมาชิกทุกคนต้องสามารถอธิบาย Code ของกลุ่มได้ ไม่ใช่เฉพาะส่วนที่ตนเองเขียน
 
@@ -604,7 +608,8 @@ Python ผูกชื่อกับ object และให้ rebind ชื่
 
 | AI Tool | Purpose | How the Result Was Verified |
 |---|---|---|
-| `[AI tool]` | `[ใช้เพื่ออะไร]` | `[ตรวจสอบอย่างไร]` |
+| `NotebookLM` | `ใช้เพื่อค้นหาข้อมูลและเปรียบเทียบข้อมูลเชิงppl` | `ตรวจสอบความถูกต้องโดยเทียบกับไฟล์เอกสารที่ใช้เรียนในรายวิชาPrincipleProgramLanguageเป็นหลัก` |
+| `Claude` | `เขียนโค๊ดเปรียบเทียบระหว่างRustกับPython` | `ช่วยเช็คsyntaxและlogicการเขียนcodeทั้งสองภาษา` |
 
 ### Declaration
 
@@ -615,63 +620,63 @@ Python ผูกชื่อกับ object และให้ rebind ชื่
 
 **รายละเอียดการใช้ AI**
 
-`[อธิบายว่าใช้ AI ในขั้นตอนใด และสมาชิกตรวจสอบผลลัพธ์อย่างไร]`
- ให้ช่วยเช้คsyntaxขอองcode
+นำเอกสารที่เรียนไปให้ NotebookLM สรุป และนำมาเป็นเกณฑ์ในการวิเคราะห์ภาษาเชิง PPL และใช้ Claude ช่วยเช็ค syntax ของแต่ละภาษา
+
 ---
 
 ## 14. GitHub Contribution
 
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
-| Member 1 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 2 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 3 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 4 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
+| Member 1 | `0` | `1` | `1` | `1` | `เขียนหัวข้อ Introduction และ Key Concepts, เปิด PR ส่วน Concept, review PR ของ Member 2` |
+| Member 2 | `0` | `1` | `1` | `1` | `เขียน Example 1–2 และทดสอบโค้ดด้วย cargo run, review PR ของ Member 3` |
+| Member 3 | `0` | `4` | `3` | `1` | `เขียนหัวข้อ PPL Perspective และ Rust vs Python, review PR ของ Member 4` |
+| Member 4 | `0` | `1` | `1` | `1` | `เขียน Common Mistakes และ Exercises, review PR ของ Member 1` |
 
 ### Teamwork Reflection
 
 **How did your team collaborate?**
 
-`[อธิบายกระบวนการทำงานร่วมกัน]`
+`เราได้นัดกันมาทำและแบ่งหน้าที่ตามของแต่ละคนและทำการรวมงานเพื่อนเอาversionที่สมบูรณ์ส่ง`
 
 **Problems encountered**
 
-`[ปัญหาที่พบ]`
+`บางทีเพื่อนเอาไปแก้แล้วcodeบางส่วนที่เคยทำขาดหาย`
 
 **How did you solve them?**
 
-`[วิธีแก้ปัญหา]`
+`ปรึกษาและคอยupdateงานกันตลอดเวลา`
 
 ---
 
 ## 15. Final Checklist
 
-- [ ] Learning Objectives ครบ 3–4 ข้อ
-- [ ] Key Concepts ครบถ้วน
-- [ ] Syntax / Rules
-- [ ] Runnable Code Examples
-- [ ] Code Compile และ Run ได้จริง
-- [ ] Common Mistakes
-- [ ] Exercises 2 ข้อ พร้อม Solutions
-- [ ] PPL Perspective
-- [ ] Rust vs Other Language
-- [ ] References อย่างน้อย 4 แหล่ง
-- [ ] AI Usage Declaration
-- [ ] GitHub Contribution
-- [ ] สมาชิกทั้ง 4 คนมีส่วนร่วม
-- [ ] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
-- [ ] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
+- [x] Learning Objectives ครบ 3–4 ข้อ
+- [x] Key Concepts ครบถ้วน
+- [x] Syntax / Rules
+- [x] Runnable Code Examples
+- [x] Code Compile และ Run ได้จริง
+- [x] Common Mistakes
+- [x] Exercises 2 ข้อ พร้อม Solutions
+- [x] PPL Perspective
+- [x] Rust vs Other Language
+- [x] References อย่างน้อย 4 แหล่ง
+- [x] AI Usage Declaration
+- [x] GitHub Contribution
+- [x] สมาชิกทั้ง 4 คนมีส่วนร่วม
+- [x] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
+- [x] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
 
 ---
 
 ## Submission Information
 
-**Repository:** `[GitHub repository URL]`
+**Repository:** https://github.com/soonklang/rust-tutorial-2569
 
-**Chapter Path:** `[เช่น chapters/01-variables-mutability-data-types/]`
+**Chapter Path:** `03-variables-mutability-data-types/`
 
-**Final PR:** `#[PR number]`
+**Final PR:** ``
 
-**Submitted by:** `[Group XX]`
+**Submitted by:** `Group 03`
 
-**Date:** `[YYYY-MM-DD]`
+**Date:** `2026-10-03`
