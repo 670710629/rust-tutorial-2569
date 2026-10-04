@@ -1251,9 +1251,9 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
 | Member 1 | `0` | `7` | `4` | `0` | `11` |
-| Member 2 | `0` | `38` | `9` | `0` | `42` |
+| Member 2 | `0` | `51` | `9` | `0` | `60` |
 | Member 3 | `0` | `29` | `8` | `0` | `37` |
-| Member 4 | `0` | `20` | `3` | `0` | `5` |
+| Member 4 | `0` | `20` | `3` | `0` | `23` |
 
 ### Teamwork Reflection
 
@@ -1297,11 +1297,11 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 
 ## Submission Information
 
-**Repository:** `github.com/670710296/rust-tutorial-2569/`
+**Repository:** `**github.com/670710296/rust-tutorial-2569/**`
 
 **Chapter Path:** `13-slices-rust-memory-model/`
 
-**Final PR:** `#[PR number]`
+**Final PR:** `#39`
 
 **Submitted by:** `[Group 13]`
 
