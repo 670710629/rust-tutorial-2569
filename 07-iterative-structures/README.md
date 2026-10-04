@@ -1048,7 +1048,7 @@ Perplexity ใช้ในการหา concept ตรวจสอบโดย
 | Member 1 | `0` | `2` | `2` | `2` | `README`, `Update syntax/rules section with loop examples` |
 | Member 2 | `0` | `1` | `1` | `1` | `Update: README.md` |
 | Member 3 | `0` | `1` | `1` | `1` | `docs: update PPL anaiysis and Rust vs Python comparison` |
-| Member 4 | `0` | `4` | `3` | `1` | `SUCCESS: Topic Example, Common mistakes and Challenge`, `Update: details branch main`, `MERGE: origin Tle` , `Update: merge branch everyone push to main`|
+| Member 4 | `0` | `3` | `3` | `1` | `SUCCESS: Topic Example, Common mistakes and Challenge`, `Update: details branch main`, `MERGE: origin Tle` , `Update: merge branch everyone push to main`|
 
 ### Teamwork Reflection
 
