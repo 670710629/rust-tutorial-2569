@@ -398,18 +398,41 @@ Rust ถูกออกแบบมาเพื่อแก้ปัญหา "�
 trait Drawable {
     fn draw(&self);
 }
+
 struct Circle {
     radius: f64,
 }
+
+struct Square {
+    side: f64,
+}
+
 impl Drawable for Circle {
     fn draw(&self) {
         println!("Drawing a circle with radius: {}", self.radius);
     }
 }
 
-fn main() {
-    let shape = Circle { radius: 5.0 };
+impl Drawable for Square {
+    fn draw(&self) {
+        println!("Drawing a square with side: {}", self.side);
+    }
+}
+
+impl Drawable for i32 {
+    fn draw(&self) {
+        println!("Drawing a point at: {}", self);
+    }
+}
+
+fn render(shape: &impl Drawable) {
     shape.draw();
+}
+
+fn main() {
+    render(&Circle { radius: 5.0 });
+    render(&Square { side: 3.0 });
+    render(&42_i32);
 }
 ```
 
