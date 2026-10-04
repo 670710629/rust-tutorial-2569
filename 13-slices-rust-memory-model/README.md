@@ -1184,13 +1184,9 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 
 `ที่รับผิดชอบส่วน Mistake + Exercise (7 - 8), ข้อผิดพลาดที่พบบ่อย และ วิธีการแก้ไขข้อผิดพลาด (4 หัวข้อย่อย), คำถามท้าทายผู้ฟัง และ เฉลย (2 ข้อ)`
 
-> สมาชิกทุกคนต้องสามารถอธิบาย Code ของกลุ่มได้ ไม่ใช่เฉพาะส่วนที่ตนเองเขียน
-
 ---
 
 ## 12. References
-
-> แนะนำให้มีอย่างน้อย **4 แหล่งอ้างอิง** และควรใช้เอกสารทางการเป็นหลัก
 
 1. The Rust Programming Language — Understanding Ownership, References and Borrowing, Slices
 `https://doc.rust-lang.org/book/`
@@ -1210,8 +1206,6 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 `https://notes.kodekloud.com/docs/Rust-Programming/Ownership/Rules-for-Slices/page`
 9. The Rust Programming Language - Storing UTF-8 Encoded Text with Strings
 `https://doc.rust-lang.org/book/ch08-02-strings.html`
-10. Rustfinity - Mutable Slices
-`https://www.rustfinity.com/practice/rust/challenges/mutable-slices`
 
 ---
 
