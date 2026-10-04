@@ -51,7 +51,11 @@ Rust เป็นภาษาโปรแกรมระบบ ที่พั�
 
 
 ---
-## 4. Key Concept ##
+## 4. Key Concepts ##
+___
+
+## 5. Important Syntax / Rules ##
+
 ___
 
 ## 6. Runnable Code Examples
