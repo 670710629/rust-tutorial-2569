@@ -24,10 +24,10 @@
 
 หลังจากศึกษา Topic นี้แล้ว ผู้เรียนสามารถ:
 
-1. `[อธิบายแนวคิดสำคัญได้]`
-2. `[เขียนโปรแกรม Rust ที่เกี่ยวข้องได้]`
-3. `[วิเคราะห์พฤติกรรม/กฎของภาษาได้]`
-4. `[เปรียบเทียบ Rust กับภาษาอื่นได้]`
+1. `รู้จุดเด่นและความเป็นมาของ Rust`
+2. `เข้าใจการเขียนโปรแกรม Rust ขั้นพื้นฐาน`
+4. `สามารถวิเคราะห์ Rust ในมุมมองของ PL `
+5. `สามารถเปรียบเทียบ Rust กับภาษาอื่น`
 
 ---
 
@@ -47,11 +47,90 @@ Rust เป็นภาษาโปรแกรมระบบ ที่พั�
 - **1.Memory Safety** - แก้ปัญหาเรื่อง Memory Leak หรือ Dangling Pointers ที่มักเกิดใน C/C++ ผ่านระบบ Ownership, Borrowing, และ Lifetimes โดยตัวตรวจสอบของคอมไพเลอร์ Borrow Checker จะตรวจสอบความถูกต้องของการใช้หน่วยความจำตั้งแต่ช่วง Compile
 - **2.Fearless Concurrency ** - คือกฎการจัดการหน่วยความจำที่เข้มงวด ช่วยป้องกันปัญหา Data Race หรือก็คือการที่หลาย thread เข้าถึงหน่วยความจำตำแหน่งเดียวกันพร้อมกันโดยไม่มีการจัดระเบียบ ทำให้การเขียนโปรแกรมแบบทำงานพร้อมกันมีความปลอดภัยสูงมากขึ้น
 - **3.Zero-Cost Abstractions ** - คือการใช้ฟีเจอร์ระดับสูง เช่น Iterators, Generics หรือ Closure ไม่ทำให้ประสิทธิภาพการทำงานลดลงเมื่อเทียบกับการเขียนโค้ดระดับล่าง
-- **4.Tooling แบบครบวงจร ** มี Cargo ซึ่งเป็นทั้ง Package Manager และ Build System ในตัว ช่วยจัดการ Dependencies, การบิวด์โปรเจกต์, การรัน Test และการสร้าง Documentation ได้อย่างสะดวก
+- **4.Tooling แบบครบวงจร ** - มี Cargo ซึ่งเป็นทั้ง Package Manager และ Build System ในตัว ช่วยจัดการ Dependencies, การบิวด์โปรเจกต์, การรัน Test และการสร้าง Documentation ได้อย่างสะดวก
+
+### **ตัวอย่างโค้ด Rust แบบสั้นๆ** ###
+```Rust
+fn main() {
+    let name = "Rust"; 
+    let mut score = 90; 
+    score = score + 10;
+
+    println!("Hello, {}! Your score is {}.", name, score);
+}
+```
+**Expected Output**
+```rust
+(Output):PlaintextHello, Rust! Your score is 100.
+```
+**Explanation**
+- การทำงานfn main() { ... }จุดเริ่มต้นการทำงานของโปรแกรม (Main function) โค้ดทั้งหมดจะเริ่มรันจากตรงนี้
+- let name = "Rust";สร้างตัวแปรชื่อ name โดยค่าเริ่มต้นของ Rust ตัวแปรจะ แก้ไขไม่ได้ (Immutable)
+- let mut score = 90;สร้างตัวแปรชื่อ score โดยใส่คีย์เวิร์ด mut (Mutable) เพื่อบอกว่าตัวแปรนี้ สามารถเปลี่ยนค่าได้
+- score = score + 10;อัปเดตค่าใน score เพิ่มขึ้นอีก 10 (กลายเป็น 100)
+- println!(...);คำสั่งพิมพ์ข้อความออกทางหน้าจอ โดยวงเล็บปีกกา {} จะถูกแทนที่ด้วยค่าของตัวแปรตามลำดับ (name และ score)
+
 
 
 ---
-## 4. Key Concept ##
+## 4. Key Concepts ##
+### **4.1 Ownership (สิทธิ์เจ้าของ)** ###
+ข้อมูล 1 ชิ้น มีเจ้าของได้แค่ตัวเดียวเท่านั้น หากมีการส่งต่อหรือย้ายสิทธิ์ (Move) ให้ตัวแปรอื่น ตัวแปรเดิมจะใช้ต่อไม่ได้ทันที
+**ตัวอย่าง**
+```Rust
+fn main() {
+    let s1 = String::from("Hi");
+    let s2 = s1; // โอนสิทธิ์ความเป็นเจ้าของจาก s1 ให้ s2
+
+    // println!("{}", s1); // จะ Compile Error เพราะ s1 ถูกโอนสิทธิ์ไปแล้ว
+    println!("{}", s2);
+}
+```
+**Explanation**
+- เมื่อกำหนด let s2 = s1; Rust จะทำการย้ายสิทธิ์ความเป็นเจ้าของข้อมูล "Hi" บน Heap ไปให้ s2 ทำให้ s1 กลายเป็นตัวแปรเปล่าที่ไม่สามารถใช้งานได้อีก เพื่อป้องกันปัญหาการคืนหน่วยความจำซ้ำซ้อน (Double Free)
+### **4.2 Borrowing (การยืม)** ###
+การเข้าถึงข้อมูลโดยใช้เครื่องหมาย & เพื่อยืมอ่านค่า (Immutable Reference) โดยไม่ต้องเปลี่ยนหรือย้ายสิทธิ์ความเป็นเจ้าของ ทำให้ตัวแปรต้นทางยังใช้งานต่อได้ตามปกติ
+ตัวอย่าง
+```Rust
+fn main() {
+    let s1 = String::from("Hi");
+    let len = s1.len(); // ยืมอ่านความยาวข้อมูลโดย s1 ยังเป็นเจ้าของอยู่
+
+    println!("ข้อความ: {}, ความยาว: {}", s1, len);
+}
+```
+**Explanation**
+- เมธอด .len() ยืมอ่านข้อมูลผ่าน &s1 เพียงอย่างเดียว ไม่ได้ยึดสิทธิ์ความเป็นเจ้าของไป ดังนั้นเมื่อคำนวณความยาวเสร็จแล้ว ตัวแปร s1 จึงยังสามารถนำมาใช้งานต่อในบรรทัดถัดไปได้
+### **4.3 Mutability (การเปลี่ยนค่า)** ###
+ตัวแปรใน Rust ทั้งหมดจะแก้ไขค่าไม่ได้ (Immutable) เป็นค่าเริ่มต้น หากต้องการให้ตัวแปรนั้นๆ สามารถเปลี่ยนแปลงหรืออัปเดตค่าได้ จะต้องใส่คีย์เวิร์ด mut กำกับไว้เสมอ
+ตัวอย่าง
+```Rust
+fn main() {
+    let mut x = 5;
+    println!("ค่าเริ่มต้น: {}", x);
+
+    x = 10; // แก้ไขค่าได้เพราะมี mut
+    println!("ค่าใหม่: {}", x);
+}
+```
+**Explanation**
+- การประกาศ let mut x = 5; ช่วยบอกคอมไพเลอร์ว่าตัวแปร x อนุญาตให้แก้ไขข้อมูลในภายหลังได้ ทำให้คำสั่ง x = 10; ทำงานได้สำเร็จโดยไม่เกิด Compile Error
+___
+
+## 5. Important Syntax / Rules ##
+| Syntax / Rule | Meaning | Example |
+|---|---|---|
+| `let` / `let mut` | ประกาศตัวแปร (ค่าเริ่มต้นเปลี่ยนไม่ได้) | `let mut x = 0;` |
+| `fn` | ประกาศฟังก์ชัน | `fn add(a: i32, b: i32) -> i32 { a + b }` |
+| closure `\|x\| ...` | ฟังก์ชันนิรนามที่จับตัวแปรได้ | `\|n\| n * 2` |
+| `trait` / `impl ... for` | กำหนดและทำพฤติกรรมให้ type | `impl Shape for Rect { ... }` |
+| `&` / `&mut` | การยืมแบบอ่านอย่างเดียว / แก้ไขได้ | `len(&s)` |
+
+### Important Rules
+
+1. ทุกค่ามีเจ้าของเพียงหนึ่งเดียว และถูกคืนเมื่อเจ้าของหมดขอบเขต
+2. ที่เวลาหนึ่งมีได้อย่างใดอย่างหนึ่ง คือ reference แบบอ่านได้หลายตัว หรือ reference แบบแก้ไขได้หนึ่งตัว
+3. reference ต้องไม่อยู่นานกว่าค่าที่มันชี้ไป
 ___
 
 ## 6. Runnable Code Examples
@@ -398,18 +477,41 @@ Rust ถูกออกแบบมาเพื่อแก้ปัญหา "�
 trait Drawable {
     fn draw(&self);
 }
+
 struct Circle {
     radius: f64,
 }
+
+struct Square {
+    side: f64,
+}
+
 impl Drawable for Circle {
     fn draw(&self) {
         println!("Drawing a circle with radius: {}", self.radius);
     }
 }
 
-fn main() {
-    let shape = Circle { radius: 5.0 };
+impl Drawable for Square {
+    fn draw(&self) {
+        println!("Drawing a square with side: {}", self.side);
+    }
+}
+
+impl Drawable for i32 {
+    fn draw(&self) {
+        println!("Drawing a point at: {}", self);
+    }
+}
+
+fn render(shape: &impl Drawable) {
     shape.draw();
+}
+
+fn main() {
+    render(&Circle { radius: 5.0 });
+    render(&Square { side: 3.0 });
+    render(&42_i32);
 }
 ```
 
@@ -421,7 +523,9 @@ fn main() {
 class Drawable {
 public:
     virtual void draw() const = 0;
+    virtual ~Drawable() = default;
 };
+
 class Circle : public Drawable {
 private:
     double radius;
@@ -432,9 +536,24 @@ public:
     }
 };
 
-int main() {
-    Circle shape(5.0);
+class Square : public Drawable {
+private:
+    double side;
+public:
+    Square(double s) : side(s) {}
+    void draw() const override {
+        std::cout << "Drawing a square with side: " << side << std::endl;
+    }
+};
+
+void render(const Drawable& shape) {
     shape.draw();
+}
+
+int main() {
+    render(Circle(5.0));
+    render(Square(3.0));
+    // render(42);  //ใช้ไม่ได้: int ไม่ได้สืบทอด Drawable และเพิ่มภายหลังไม่ได้
     return 0;
 }
 ```
@@ -499,17 +618,21 @@ Exercies, Common Mistakes, Challenge
 |---|---|---|
 | Gemini | ใช้เพื่อหาแหล่งข้อมูลและวิเคราะห์แนวคิดเชิง PPL | ตรวจสอบความถูกต้องโดยเทียบเคียงกับ Official Documentation และทดสอบรันโค้ดตัวอย่าง |
 | Claude | เขียนโค้ดเปรียบเทียบ Rust/C++ | คอมไพล์และรันโค้ด Rust ด้วย `cargo run` และโค้ด C++ ด้วย `g++ -Wall` แล้วเทียบ output กับที่ระบุในเอกสาร, เปิดอ่านบทที่อ้างใน Rust Book (ch.4, 13, 18) และเอกสาร C++ เพื่อยืนยันข้อความ, ตรวจลิงก์อ้างอิงทุกลิงก์ว่าเปิดได้และตรงกับเนื้อหา |
+| Gemini | ใช้เพื่อศึกษาหาความรู้ แนะนำภาษา Rust | https://share.gemini.google/roSMoGRnYVoO |
+| Claude | ใช้ยกตัวอย่าง Code และเปรียบเทียบกับภาษา C และอธิบายโค้ดที่ของภาษา Rust | https://claude.ai/share/f52cbaa9-7cc6-43b8-9ba4-3264eb1286bb |
+| Claude | ใช้อธิบายพื้นฐานของ Rust วิธีใช้แล้วก็ศึกษาโค้ด | https://claude.ai/share/91b55ed2-e563-467a-9288-a46c88848ac8 |
+| Claude | ใช้ถามศึกษา Important/Syntax | https://claude.ai/share/c0cf2c49-bafc-4e51-8518-a906b3667962 |
 
 ### Declaration
 
-- [ ] Code ทุกส่วนที่นำเสนอได้รับการ Compile และทดสอบแล้ว
-- [ ] สมาชิกทุกคนสามารถอธิบาย Code ที่นำเสนอได้
-- [ ] ตรวจสอบข้อมูลจากแหล่งอ้างอิงที่น่าเชื่อถือแล้ว
-- [ ] ระบุการใช้ AI อย่างโปร่งใส
+- [x] Code ทุกส่วนที่นำเสนอได้รับการ Compile และทดสอบแล้ว
+- [x] สมาชิกทุกคนสามารถอธิบาย Code ที่นำเสนอได้
+- [x] ตรวจสอบข้อมูลจากแหล่งอ้างอิงที่น่าเชื่อถือแล้ว
+- [x] ระบุการใช้ AI อย่างโปร่งใส
 
 **รายละเอียดการใช้ AI**
 
-`[อธิบายว่าใช้ AI ในขั้นตอนใด และสมาชิกตรวจสอบผลลัพธ์อย่างไร]`
+`ใช้ Claude และ Gemini เพื่อศึกษาข้อมูลของภาษา PPL ทั้งเรื่อง Syntax ของแต่ละภาษาพร้อมทั้งให้ช่วยคิด Exercise,Example,วิธีแก้ไขโค้ดพร้อมปัญหาที่พบ`
 
 ---
 
@@ -517,44 +640,44 @@ Exercies, Common Mistakes, Challenge
 
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
-| Member 1 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 2 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 3 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 4 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
+| Member 1 | `0` | `27` | `1` | `0` | `Concept + Short Code Illustration` |
+| Member 2 | `0` | `3` | `1` | `8` | `Detailed Code + Live Demo` |
+| Member 3 | `0` | `9` | `1` | `2` | `Rust vs Other Language + PPL Analysis` |
+| Member 4 | `0` | `4` | `1` | `5` | `Exercises + Common Mistakes + Challenge` |
 
 ### Teamwork Reflection
 
 **How did your team collaborate?**
 
-`[อธิบายกระบวนการทำงานร่วมกัน]`
+`ได้มีการพูดคุยผ่าน Line และมีการปรึกษาหาข้อมูลพร้อมวิธีแก้ไขร่วมกัน`
 
 **Problems encountered**
 
-`[ปัญหาที่พบ]`
+`มีโค้ดบางอย่างที่ไม่เข้าใจถึงวิธีแก้ไขปัญหา`
 
 **How did you solve them?**
 
-`[วิธีแก้ปัญหา]`
+`ก็ได้วิเคราะห์ช่วยเหลือกันจนแก้ไขโค้ดได้`
 
 ---
 
 ## 15. Final Checklist
 
-- [ ] Learning Objectives ครบ 3–4 ข้อ
-- [ ] Key Concepts ครบถ้วน
-- [ ] Syntax / Rules
-- [ ] Runnable Code Examples
-- [ ] Code Compile และ Run ได้จริง
-- [ ] Common Mistakes
-- [ ] Exercises 2 ข้อ พร้อม Solutions
-- [ ] PPL Perspective
-- [ ] Rust vs Other Language
-- [ ] References อย่างน้อย 4 แหล่ง
-- [ ] AI Usage Declaration
-- [ ] GitHub Contribution
-- [ ] สมาชิกทั้ง 4 คนมีส่วนร่วม
-- [ ] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
-- [ ] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
+- [x] Learning Objectives ครบ 3–4 ข้อ
+- [x] Key Concepts ครบถ้วน
+- [x] Syntax / Rules
+- [x] Runnable Code Examples
+- [x] Code Compile และ Run ได้จริง
+- [x] Common Mistakes
+- [x] Exercises 2 ข้อ พร้อม Solutions
+- [x] PPL Perspective
+- [x] Rust vs Other Language
+- [x] References อย่างน้อย 4 แหล่ง
+- [x] AI Usage Declaration
+- [x] GitHub Contribution
+- [x] สมาชิกทั้ง 4 คนมีส่วนร่วม
+- [x] สมาชิกทั้ง 4 คนพร้อมนำเสนอคนละ 5 นาที
+- [x] สมาชิกทุกคนสามารถอธิบาย Code ของกลุ่มได้
 
 ---
 
