@@ -926,7 +926,7 @@ int main() {
 
 **Member 2**
 
-`[สิ่งที่รับผิดชอบ]`
+`ถอนไปแล้ว`
 
 **Member 3**
 
@@ -978,9 +978,9 @@ int main() {
 
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
-| Member 1 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 2 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 3 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
+| Member 1 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `จัดทำหัวข้อ Concept + Short Code Illustration` |
+| Member 2 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `ถอนไปแล้ว` |
+| Member 3 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `จัดทำหัวข้อ Rust vs Other Language + PPL Analysis` |
 | Member 4 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `จัดทำหัวข้อ Common Mistake , Exercise ,Challenge และทดสอบโค้ด` |
 
 ### Teamwork Reflection
@@ -1027,9 +1027,9 @@ int main() {
 
 **Final PR:** `#[PR number]`
 
-**Submitted by:** `[Group XX]`
+**Submitted by:** `[Group 16]`
 
-**Date:** `[YYYY-MM-DD]`
+**Date:** `[2569-10-04]`
 
 ---
 
