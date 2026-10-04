@@ -547,6 +547,9 @@ Exercies, Common Mistakes, Challenge
 | Gemini | ใช้เพื่อหาแหล่งข้อมูลและวิเคราะห์แนวคิดเชิง PPL | ตรวจสอบความถูกต้องโดยเทียบเคียงกับ Official Documentation และทดสอบรันโค้ดตัวอย่าง |
 | Claude | เขียนโค้ดเปรียบเทียบ Rust/C++ | คอมไพล์และรันโค้ด Rust ด้วย `cargo run` และโค้ด C++ ด้วย `g++ -Wall` แล้วเทียบ output กับที่ระบุในเอกสาร, เปิดอ่านบทที่อ้างใน Rust Book (ch.4, 13, 18) และเอกสาร C++ เพื่อยืนยันข้อความ, ตรวจลิงก์อ้างอิงทุกลิงก์ว่าเปิดได้และตรงกับเนื้อหา |
 | Gemini | ใช้เพื่อศึกษาหาความรู้ แนะนำภาษา Rust | https://share.gemini.google/roSMoGRnYVoO |
+| Claude | ใช้ยกตัวอย่าง Code และเปรียบเทียบกับภาษา C และอธิบายโค้ดที่ของภาษา Rust | https://claude.ai/share/f52cbaa9-7cc6-43b8-9ba4-3264eb1286bb |
+| Claude | ใช้อธิบายพื้นฐานของ Rust วิธีใช้แล้วก็ศึกษาโค้ด | https://claude.ai/share/91b55ed2-e563-467a-9288-a46c88848ac8 |
+| Claude | ใช้ถามศึกษา Important/Syntax | https://claude.ai/share/c0cf2c49-bafc-4e51-8518-a906b3667962 |
 
 ### Declaration
 
