@@ -1198,19 +1198,19 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 `https://doc.rust-lang.org/reference/types/slice.html`
 3. Crate std - Primitive Type slice
 `https://doc.rust-lang.org/std/primitive.slice.html`
-5. Python Documentation — Common Sequence Operations / Slicing
+4. Python Documentation — Common Sequence Operations / Slicing
 `https://docs.python.org/3/library/stdtypes.html`
-4. cppreference — C / C++ Arrays, Pointers and std::span
+5. cppreference — C / C++ Arrays, Pointers and std::span
 <br>`https://en.cppreference.com/w/c/language/array`<br>`https://en.cppreference.com/w/cpp/container/span`
-5. Oracle Java Documentation — Arrays
+6. Oracle Java Documentation — Arrays
 `https://docs.oracle.com/javase/tutorial/java/nutsandbolts/arrays.html`
-6. Kodekloud - The Slice Type
+7. Kodekloud - The Slice Type
 `https://notes.kodekloud.com/docs/Rust-Programming/Ownership/The-Slice-Type/page`
-7. Kodekloud - Rules for Slices
+8. Kodekloud - Rules for Slices
 `https://notes.kodekloud.com/docs/Rust-Programming/Ownership/Rules-for-Slices/page`
-8. The Rust Programming Language - Storing UTF-8 Encoded Text with Strings
+9. The Rust Programming Language - Storing UTF-8 Encoded Text with Strings
 `https://doc.rust-lang.org/book/ch08-02-strings.html`
-9. Rustfinity - Mutable Slices
+10. Rustfinity - Mutable Slices
 `https://www.rustfinity.com/practice/rust/challenges/mutable-slices`
 
 ---
