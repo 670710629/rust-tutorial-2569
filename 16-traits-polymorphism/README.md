@@ -958,6 +958,7 @@ int main() {
 | AI Tool | Purpose | How the Result Was Verified |
 |---|---|---|
 | `ChatGPT` | `แปลบทความ rust และเอกสารต่างๆ` | `ทำการตรวจทานเพิ่มเติม` |
+| `ChatGPT` | `ช่วยตรวจสอบ syntax ของ code` | `ทำการตรวจทาน และทำความเข้าใจใน code เพิ่มเติม` |
 
 
 ### Declaration
