@@ -843,7 +843,7 @@ class Cat implements Eat{
     }
 }
 
-public class Main {
+public class javacode {
     public static void main(String[] args) {
         Person perr = new Person("Coco");
         perr.eat_dinner();
