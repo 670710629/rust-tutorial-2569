@@ -736,7 +736,7 @@ fn main() {
 
 ## 10. Rust vs. Other Language
 
-**Comparison Language:** `[Python / C / C++ / Java / Kotlin / ...]`
+**Comparison Language:** `[Python / C / C++ / Java ]`
 
 | Aspect | Rust | Other Language |
 |---|---|---|
@@ -978,10 +978,10 @@ int main() {
 
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
-| Member 1 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `จัดทำหัวข้อ Concept + Short Code Illustration` |
-| Member 2 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `ถอนไปแล้ว` |
-| Member 3 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `จัดทำหัวข้อ Rust vs Other Language + PPL Analysis` |
-| Member 4 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `จัดทำหัวข้อ Common Mistake , Exercise ,Challenge และทดสอบโค้ด` |
+| Member 1 | `0` | `4` | `0` | `0` | `จัดทำหัวข้อ Concept + Short Code Illustration` |
+| Member 2 | `0` | `0` | `0` | `0` | `ถอนไปแล้ว` |
+| Member 3 | `0` | `24` | `0` | `0` | `จัดทำหัวข้อ Rust vs Other Language + PPL Analysis` |
+| Member 4 | `0` | `21` | `0` | `0` | `จัดทำหัวข้อ Common Mistake , Exercise ,Challenge และทดสอบโค้ด` |
 
 ### Teamwork Reflection
 
@@ -1021,11 +1021,11 @@ int main() {
 
 ## Submission Information
 
-**Repository:** `[GitHub repository URL]`
+**Repository:** `https://github.com/670710629/rust-tutorial-2569`
 
 **Chapter Path:** `[16-traits-polymorphism]`
 
-**Final PR:** `#[PR number]`
+**Final PR:** `#40`
 
 **Submitted by:** `[Group 16]`
 
