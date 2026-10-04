@@ -441,11 +441,10 @@ fn main() {
 ```C++
 #include <iostream>
 
-// พฤติกรรมผูกอยู่กับลำดับชั้นของคลาส (Inheritance)
 class Drawable {
 public:
     virtual void draw() const = 0;
-    virtual ~Drawable() = default;  // ป้องกัน UB เมื่อ delete ผ่าน base pointer
+    virtual ~Drawable() = default;
 };
 
 class Circle : public Drawable {
@@ -468,7 +467,6 @@ public:
     }
 };
 
-// รับ base class reference -> dynamic dispatch ผ่าน vtable
 void render(const Drawable& shape) {
     shape.draw();
 }
