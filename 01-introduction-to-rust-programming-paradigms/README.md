@@ -560,7 +560,7 @@ Exercies, Common Mistakes, Challenge
 
 **รายละเอียดการใช้ AI**
 
-`[อธิบายว่าใช้ AI ในขั้นตอนใด และสมาชิกตรวจสอบผลลัพธ์อย่างไร]`
+`ใช้ Claude และ Gemini เพื่อศึกษาข้อมูลของภาษา PPL ทั้งเรื่อง Syntax ของแต่ละภาษาพร้อมทั้งให้ช่วยคิด Exercise,Example,วิธีแก้ไขโค้ดพร้อมปัญหาที่พบ`
 
 ---
 
@@ -568,10 +568,10 @@ Exercies, Common Mistakes, Challenge
 
 | Member | Issues | Commits | Pull Requests | Code Reviews | Contribution |
 |---|---:|---:|---:|---:|---|
-| Member 1 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 2 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 3 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
-| Member 4 | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[จำนวน]` | `[รายละเอียด]` |
+| Member 1 | `0` | `21` | `1` | `0` | `Concept + Short Code Illustration` |
+| Member 2 | `0` | `3` | `1` | `6` | `Detailed Code + Live Demo` |
+| Member 3 | `0` | `9` | `1` | `2` | `Rust vs Other Language + PPL Analysis` |
+| Member 4 | `0` | `4` | `1` | `1` | `Exercises + Common Mistakes + Challenge` |
 
 ### Teamwork Reflection
 
@@ -585,7 +585,7 @@ Exercies, Common Mistakes, Challenge
 
 **How did you solve them?**
 
-`ก็ได้วิเคราะห์ช่วยเหลือกันจนแก้ไขได้`
+`ก็ได้วิเคราะห์ช่วยเหลือกันจนแก้ไขโค้ดได้`
 
 ---
 
