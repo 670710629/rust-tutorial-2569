@@ -441,10 +441,13 @@ fn main() {
 ```C++
 #include <iostream>
 
+// พฤติกรรมผูกอยู่กับลำดับชั้นของคลาส (Inheritance)
 class Drawable {
 public:
     virtual void draw() const = 0;
+    virtual ~Drawable() = default;  // ป้องกัน UB เมื่อ delete ผ่าน base pointer
 };
+
 class Circle : public Drawable {
 private:
     double radius;
@@ -455,9 +458,25 @@ public:
     }
 };
 
-int main() {
-    Circle shape(5.0);
+class Square : public Drawable {
+private:
+    double side;
+public:
+    Square(double s) : side(s) {}
+    void draw() const override {
+        std::cout << "Drawing a square with side: " << side << std::endl;
+    }
+};
+
+// รับ base class reference -> dynamic dispatch ผ่าน vtable
+void render(const Drawable& shape) {
     shape.draw();
+}
+
+int main() {
+    render(Circle(5.0));
+    render(Square(3.0));
+    // render(42);  //ใช้ไม่ได้: int ไม่ได้สืบทอด Drawable และเพิ่มภายหลังไม่ได้
     return 0;
 }
 ```
