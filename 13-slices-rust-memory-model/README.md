@@ -1210,6 +1210,8 @@ Java เน้นการจัดการ Memory อัตโนมัติ�
 `https://notes.kodekloud.com/docs/Rust-Programming/Ownership/Rules-for-Slices/page`
 8. The Rust Programming Language - Storing UTF-8 Encoded Text with Strings
 `https://doc.rust-lang.org/book/ch08-02-strings.html`
+9. Rustfinity - Mutable Slices
+`https://www.rustfinity.com/practice/rust/challenges/mutable-slices`
 
 ---
 
