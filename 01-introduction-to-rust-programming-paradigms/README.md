@@ -52,6 +52,9 @@ Rust เป็นภาษาโปรแกรมระบบ ที่พั�
 
 ---
 ## 4. Key Concepts ##
+### **4.1 1. Ownership** ###
+### **4.2 2.
+### **4.3
 ___
 
 ## 5. Important Syntax / Rules ##
